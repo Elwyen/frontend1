@@ -6,10 +6,30 @@ import { kutyaLista } from "./adatok.js";
 //import { kutyaIrasCard } from "./fuggvenyek.js";
 import Kartyak from "./Kartyak.js";
 
-const divElem = $(".tartalom")
+const kivalasztottLista=[]
 
+const divElem = $(".tartalom")
+const kivElem = $(".kivalasztottak")
 
 new Kartyak(kutyaLista, divElem)
+
+
+//melyik kartyara kattintottunk? az adatait tegyuk bele a listaba
+// ha el akarunk erni egy privat adattagot: 1. getter az osztalyban es
+//azt a gettert kell meghivni
+// a problema, hogy ezt a gettert akkor kene meghivni ha rakattintunk a gombra
+
+//feliratkozunk a sajat esemenyunkre
+$(window).on("kivalaszt",(event)=>{
+    console.log(event.detail) // event.detail - ezt adtam at a sajat esemenyunkkel, az adott kartyahoz tartozo kutya adata
+    kivalasztottLista.push(event.detail) // hozzaadjuk event.detail-unk a kivalasztottLista-hoz
+    console.log(kivalasztottLista) // printeljuk a listat referencianak
+    new Kartyak(kivalasztottLista,kivElem)
+})
+
+
+
+
 
 //let nev = "Dézi"
 // const cim = "Kutyák minden mennyiségben";

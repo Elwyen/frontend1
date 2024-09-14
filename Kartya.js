@@ -16,9 +16,12 @@ export default class Kartya {
         // nyil fuggveny es function nevtelen fuggveny kozott az a kulonbseg hogy a this nyilt fuggveny eseten a konkret osztaly peldanyra mutat 
         //function nevtelen fuggveny eseten pedig arra a HTML elemre amelyik kivaltotta az esemenyt
       // console.log("gomb kattintva lett")
-      console.log(event.target); //az az elem amelyik kivaltotta az esemenyt
-      console.log(this.#kutya.nev); //az elem amelyikhez a függ
       console.log(this, "teszt")
+      // letrehozunk egy sajat esemenyt.
+      const e = new CustomEvent("kivalaszt", {detail:this.#kutya})
+      // dispatcheljuk az esemenyt
+      window.dispatchEvent(e);
+      console.log(this.#kutya.nev)
     });
   }
   //tagfuggveny
